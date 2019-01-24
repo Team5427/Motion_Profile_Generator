@@ -121,6 +121,7 @@
                 </Tab>
               </tabs>
             </TabPane>
+            <Button fx:id="btnMoveBot" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#editWPX" text="MoveBot" textAlignment="CENTER" GridPane.halignment="CENTER" />
          </children>
          <VBox.margin>
             <Insets />

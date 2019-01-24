@@ -1,5 +1,7 @@
 package com.mammen.main;
 
+import com.mammen.Networking.Server;
+import com.mammen.Networking.client.Client;
 import com.mammen.file_io.FileIO;
 import com.mammen.generator.*;
 import com.mammen.generator.generator_vars.Units;
@@ -71,6 +73,16 @@ public class MainUIModel
      ******************************************************/
     private static MainUIModel backend = null;
 
+    /******************************************************
+     *   Client to recieve position data of robot
+     ******************************************************/
+    private static Client client;  
+
+    /******************************************************
+     *   Waypoint to store robot position
+     ******************************************************/
+    public static Waypoint robot_waypoint; 
+
     /**************************************************************************
      *   Constructor
      *************************************************************************/
@@ -84,6 +96,13 @@ public class MainUIModel
             updateVarUnits( oldValue, newValue )
         );
 
+        client = new Client("10.54.27.2", 10172);
+        client.start();
+        robot_waypoint = new Waypoint(client.robotX, client.robotY, client.robotHeading);
+        this.addPoint(robot_waypoint);
+
+
+        Server.start(10172);
     }   /* MainUIModel() */
 
 
@@ -406,6 +425,7 @@ public class MainUIModel
     public void clearPoints() 
     {
         waypointList.clear();
+        waypointList.add(robot_waypoint);
         path.setValue( null );
     }
 

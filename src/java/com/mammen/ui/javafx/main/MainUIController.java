@@ -464,19 +464,9 @@ public class MainUIController
     @FXML
     private void showClearPointsDialog() 
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        alert.setTitle("Clear Points");
-        alert.setHeaderText("Clear All Points?");
-        alert.setContentText("Are you sure you want to clear all points?");
         
-        Optional<ButtonType> result = alert.showAndWait();
-        
-        result.ifPresent( (ButtonType t) ->
-        {
-            if( t.getButtonData() == ButtonBar.ButtonData.OK_DONE )
-                backend.clearPoints();
-        });
+        backend.clearPoints();
+    
     } /* showClearPointsDialog() */
     
     @FXML
@@ -489,4 +479,9 @@ public class MainUIController
 
         backend.removePoints( firstIndex, lastIndex );
     } /* deletePoints() */
+
+    @FXML
+    private void editWPX() {
+        MainUIModel.robot_waypoint.setX(MainUIModel.robot_waypoint.getX()+1);
+    }
 }
